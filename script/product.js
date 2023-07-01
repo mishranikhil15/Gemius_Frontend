@@ -5,10 +5,11 @@ const name1 = (localStorage.getItem("name"));
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
 let BaseUrl=`https://giant-pink-dirndl.cyclic.app`
-
+let cont=document.querySelector(".cont");
 if(role=="Seller"){
     hide_cart.style.display="none";
-    hide_payment.style.display="none"
+    hide_payment.style.display="none";
+    cont.style.display="none"
 }
 
 if(token==undefined){
@@ -53,7 +54,7 @@ if (role == "Customer") {
 } else if (role == "Seller") {
     get_seller_data();
     let seller_add = document.getElementById("seller_add");
-    seller_add.style.display = "inline";
+    seller_add.style.display = "flex";
     seller_add.addEventListener("click",()=>{
         window.location.href="./addproduct.html"
     })
