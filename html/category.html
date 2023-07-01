@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/category.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="#"
+          ><img
+            id="logo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mlU_H4IYRMdKzNmbPVSCAHnwpTqAi9lG7A&usqp=CAU"
+            width="100"
+        /></a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="category.html">Category</a></li>
+            <li><a href="../html/product.html">Product</a></li>
+            <li><a href="../html/signup.html">Signup</a></li>
+            <li><a id="login_name" href="../html/login.html">Login</a></li>
+            <li><a href="../html/cart.html">Cart</a></li>
+            <li><a href="../html/account.html">Account</a></li>
+            <li><a href="../html/payment.html">Checkout</a></li>
+            <li><a href="../html/logout.html">Logout</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="heading">
+      <h1>Select from Different Product Categories</h1>
+    </div>
+
+    <div class="cont">
+      <select id="size">
+        <option value="">Select Size</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <select id="sort">
+        <option value="">Select Price Range</option>
+        <option value="asc">Low TO High</option>
+        <option value="desc">High To Low</option>
+      </select>
+
+      <input type="text" id="search" placeholder="Search By Name" />
+      <button id="search_btn">Search</button>
+    </div>
+
+    <div id="main">
+      <!-- Data from backend -->
+    </div>
+  </body>
+</html>
+
+<script src="../script/category.js"></script>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/payment.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="#"
+          ><img
+            id="logo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mlU_H4IYRMdKzNmbPVSCAHnwpTqAi9lG7A&usqp=CAU"
+            width="100"
+        /></a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../html/category.html">Category</a></li>
+            <li><a href="../html/signup.html">Signup</a></li>
+            <li><a id="login_name" href="../html/login.html">Login</a></li>
+            <li><a href="../html/product.html">Product</a></li>
+            <li><a href="../html/cart.html">Cart</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="payment.html">Checkout</a></li>
+            <li><a href="../html/logout.html">Logout</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="heading">
+      <h1>Make Your Payment Here with the help of Upi Id</h1>
+    </div>
+
+    <div id="totalAmount"></div>
+
+    
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<button id="rzp-button1">Pay with Razorpay Using Upi</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+const token = localStorage.getItem("token");
+const name1 = (localStorage.getItem("name"));
+let render = document.getElementById("render");
+if (token == undefined) {
+    console.log(token)
+    alert("Please Login First");
+    window.location.href = "./login.html"
+
+} else {
+    if (name1 != undefined) {
+        login_name.innerText = name1
+    }
+}
+
+  let final_data = JSON.parse(localStorage.getItem("final_cart_data"));
+  console.log(final_data);
+
+  let totalAmount;
+
+  if (final_data) {
+    // Calculate the total amount
+    totalAmount = final_data.reduce((total, item) => {
+      const quantity = item.quantity || 1;
+      const price = item.price || 0;
+      return total + quantity * price;
+    }, 0);
+
+    // Display the total amount in the HTML
+    const totalAmountDiv = document.getElementById("totalAmount");
+    totalAmountDiv.className = "total";
+    totalAmountDiv.textContent = `Total Amount: Rs.${totalAmount.toFixed(2)}`;
+  }
+
+  var orderId;
+  $(document).ready(function () {
+    var settings = {
+      url: "/create/orderId",
+      method: "POST",
+      timeout: 0,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({
+        amount: totalAmount * 100,
+      }),
+    };
+
+    //creates new orderId everytime
+    $.ajax(settings).done(function (response) {
+      orderId = response.orderId;
+      console.log(orderId);
+      $("button").show();
+    });
+  });
+
+  document.getElementById("rzp-button1").onclick = function (e) {
+    var options = {
+      key: "rzp_test_rN9fKC3IkvjvAS", // Enter the Key ID generated from the Dashboard
+      amount: totalAmount * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Tea",
+      description: "Green Tea",
+      image: "https://example.com/your_logo",
+      order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature)
+        alert("Payment Successfull");
+        var settings = {
+          url: "/api/payment/verify",
+          method: "POST",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify({ response }),
+        };
+      },
+      //   $.ajax(settings).done(function (response) {
+      //       alert(JSON.stringify(response))
+      //   });
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on("payment.failed", function (response) {
+      //   alert(response.error.code);
+      //   alert(response.error.description);
+      //   alert(response.error.source);
+      //   alert(response.error.step);
+      //   alert(response.error.reason);
+      //   alert(response.error.metadata.order_id);
+      //   alert(response.error.metadata.payment_id);
+      console.log(response);
+    });
+    rzp1.open();
+    e.preventDefault();
+  };
+</script>

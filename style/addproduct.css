@@ -1,0 +1,16 @@
+#add{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: auto;
+    background-color: aquamarine;
+    padding: 3%;
+    margin-top: 3%;
+}
+input,select{
+    padding: 3%;
+}
+#btn{
+    padding: 3%;
+    margin-top: 2%;
+}

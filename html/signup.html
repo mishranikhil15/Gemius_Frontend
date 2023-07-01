@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="#"
+          ><img
+            id="logo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mlU_H4IYRMdKzNmbPVSCAHnwpTqAi9lG7A&usqp=CAU"
+            width="100"
+        /></a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../html/category.html">Category</a></li>
+            <li><a href="signup.html">Signup</a></li>
+            <li><a id="login_name" href="../html/login.html">Login</a></li>
+            <li><a href="../html/product.html">Product</a></li>
+            <li><a href="../html/cart.html">Cart</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Checkout</a></li>
+            <li><a href="../html/logout.html">Logout</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="heading">
+      <h1>New User Can Regsiter Here</h1>
+    </div>
+    <form id="form">
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <label for="email">Email</label>
+        <input type="text" id="email">
+        <label for="password">Password</label>
+        <input type="text" id="password">
+        <label for="role">Select Role</label>
+        <select id="role">
+            <option value="">Select Role</option>
+            <option value="Customer">Customer</option>
+            <option value="Seller">Seller</option>
+        </select>
+        <button id="btn" type="submit">Submit</button>
+    </form>
+  </body>
+</html>
+<script src="../script/signup.js"></script>
