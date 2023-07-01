@@ -2,7 +2,13 @@ const token = localStorage.getItem("token");
 const name1 = (localStorage.getItem("name"));
 let render = document.getElementById("render");
 let BaseUrl=`https://giant-pink-dirndl.cyclic.app`
-
+const role=localStorage.getItem("role");
+let hide_cart=document.getElementById("hide_cart");
+let hide_payment=document.getElementById("hide_payment");
+if(role=="Seller"){
+    hide_cart.style.display="none";
+    hide_payment.style.display="none"
+}
 if (token == undefined) {
     console.log(token)
     alert("Please Login First");

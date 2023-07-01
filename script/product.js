@@ -6,6 +6,11 @@ const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
 let BaseUrl=`https://giant-pink-dirndl.cyclic.app`
 
+if(role=="Seller"){
+    hide_cart.style.display="none";
+    hide_payment.style.display="none"
+}
+
 if(token==undefined){
     alert("Please Login First");
     window.location.href="./login.html"
